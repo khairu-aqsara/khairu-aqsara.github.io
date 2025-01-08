@@ -88,10 +88,16 @@
             opacity: 0;
             animation: typeIn 0.5s ease-out forwards;
             transition: color 0.3s ease;
+            isolation: isolate;
         }
 
         .animated-letter:hover {
             color: white;
+        }
+
+        .animated-letter span {
+            position: relative;
+            z-index: 1;
         }
 
         .liquid-content {
@@ -172,16 +178,6 @@
             animation: typeIn 0.5s ease-out forwards;
             animation-delay: 1.5s;
         }
-
-        /* New styles for text sharpness */
-        .animated-letter {
-            isolation: isolate;
-        }
-
-        .animated-letter span {
-            position: relative;
-            z-index: 1;
-        }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
@@ -195,11 +191,11 @@
     </svg>
 
     <header class="p-6 flex justify-between items-center fixed w-full top-0 bg-white/90 backdrop-blur-sm z-50">
-        <div class="text-sm text-gray-700 font-medium code-effect">
-            KHAIRUAQSARA_YK 12:25 PM
+        <div class="text-sm text-gray-700 font-medium code-effect" id="timeDisplay">
+            KHAIRUAQSARA_YK <span id="currentTime">12:25 PM</span>
         </div>
         <nav class="flex items-center space-x-8">
-            <a href="https://khairu-aqsara.net" class="nav-link text-gray-700">INDEX</a>
+            <a href="https://khairu-aqsara.net" class="nav-link text-gray-700">HOME</a>
             <a href="https://khairu-aqsara.net/blog" class="nav-link text-gray-700">BLOG</a>
             <a href="mailto:wenkhairu@gmail.com" class="lets-talk text-white px-4 py-2 ml-4">LETS_TALK</a>
         </nav>
@@ -212,9 +208,8 @@
                 <div class="name-row" id="lastName"></div>
             </div>
             <div class="content-below">
-                <p class="text-gray-700 mb-2">Fullstack Developer</p>
-                <p class="text-gray-700 mb-4">Based in Yogyakarta</p>
-                <p class="text-sm text-gray-600 code-effect">PORTFOLIO_23/24</p>
+                <p class="text-gray-700 mb-2 code-effect">Fullstack Developer & Movies Enthusiast</p>
+                <p class="text-gray-700 mb-4 code-effect">Based in Yogyakarta</p>
             </div>
         </div>
     </main>
@@ -241,6 +236,22 @@
         // Initialize the animated text
         wrapLetters('firstName', 'Khairu');
         wrapLetters('lastName', 'Aqsara');
+
+        // Time update function
+        function updateTime() {
+            const now = new Date();
+            const timeFormatter = new Intl.DateTimeFormat('en-US', {
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+            });
+            const formattedTime = timeFormatter.format(now);
+            document.getElementById('currentTime').textContent = formattedTime;
+        }
+
+        // Update time immediately and then every minute
+        updateTime();
+        setInterval(updateTime, 60000);
     </script>
 </body>
 </html>
