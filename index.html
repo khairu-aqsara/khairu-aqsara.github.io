@@ -1,257 +1,271 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Khairu Aqsara - Fullstack Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-color: #262626;
-            --bg-color: #fcfcfc;
-            --grid-color: #f3f3f3;
-            --text-color: #000000;
-            --content-font: 'JetBrains Mono', monospace;
-            --hero-font: 'Space Mono', monospace;
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        
+        @keyframes flicker {
+            0% { opacity: 0.97; }
+            5% { opacity: 0.95; }
+            10% { opacity: 0.9; }
+            15% { opacity: 0.95; }
+            20% { opacity: 0.98; }
+            25% { opacity: 0.95; }
+            30% { opacity: 0.9; }
+            35% { opacity: 0.95; }
+            40% { opacity: 0.98; }
+            45% { opacity: 0.95; }
+            50% { opacity: 0.9; }
+            55% { opacity: 0.95; }
+            60% { opacity: 0.98; }
+            65% { opacity: 0.95; }
+            70% { opacity: 0.9; }
+            75% { opacity: 0.95; }
+            80% { opacity: 0.98; }
+            85% { opacity: 0.95; }
+            90% { opacity: 0.9; }
+            95% { opacity: 0.95; }
+            100% { opacity: 0.98; }
         }
 
-        body {
-            font-family: var(--content-font);
-            background: linear-gradient(90deg, var(--grid-color) 1px, transparent 1%) center,
-                        linear-gradient(var(--grid-color) 1px, transparent 1%) center,
-                        var(--bg-color);
-            background-size: 20px 20px;
-            overflow-x: hidden;
-        }
-
-        .nav-link {
+        .crt-screen {
+            animation: flicker 0.15s infinite;
+            font-family: 'VT323', monospace;
+            color: #0fa818;
+            background: #001200;
             position: relative;
-            transition: all 0.3s ease;
+            overflow: hidden;
         }
 
-        .nav-link:hover {
-            color: var(--text-color);
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1px;
-            bottom: -2px;
-            left: 0;
-            background-color: var(--text-color);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        .lets-talk {
-            background: var(--text-color);
-            transition: all 0.3s ease;
-            border: 1px solid var(--text-color);
-        }
-
-        .lets-talk:hover {
-            background: transparent;
-            color: var(--text-color);
-        }
-
-        .name-container {
-            display: inline-block;
-            line-height: 0.9;
-        }
-
-        @keyframes typeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animated-letter {
-            display: inline-block;
-            font-size: 8rem;
-            position: relative;
-            margin: 0 -0.08em;
-            font-family: var(--hero-font);
-            font-weight: 900;
-            letter-spacing: -0.05em;
-            color: var(--text-color);
-            opacity: 0;
-            animation: typeIn 0.5s ease-out forwards;
-            transition: color 0.3s ease;
-            isolation: isolate;
-        }
-
-        .animated-letter:hover {
-            color: white;
-        }
-
-        .animated-letter span {
-            position: relative;
-            z-index: 1;
-        }
-
-        .liquid-content {
+        .crt-screen::before {
+            content: " ";
+            display: block;
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--text-color);
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(
+                rgba(18, 16, 16, 0) 50%,
+                rgba(0, 0, 0, 0.25) 50%
+            );
+            background-size: 100% 4px;
+            z-index: 2;
             pointer-events: none;
-            visibility: hidden;
-            opacity: 0;
-            transform: scale(0);
-            z-index: -1;
-            filter: url('#goo');
+            animation: fadeIn 0.15s;
         }
 
-        .animated-letter:hover .liquid-content {
-            visibility: visible;
-            opacity: 1;
-            transform: scale(1);
-            animation: liquidMove 1s ease-in-out infinite;
-        }
-
-        @keyframes liquidMove {
-            0% {
-                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-                transform: translate(0, 0) scale(1.5);
-            }
-            25% {
-                border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
-            }
-            50% {
-                border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%;
-                transform: translate(0, -10%) scale(1.8);
-            }
-            75% {
-                border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
-            }
-            100% {
-                border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-                transform: translate(0, 0) scale(1.5);
-            }
-        }
-
-        .name-row {
+        .crt-screen::after {
+            content: " ";
             display: block;
-            text-align: center;
-            margin-bottom: -0.1em;
-            position: relative;
-        }
-
-        .name-row:last-child {
-            margin-bottom: 0;
-        }
-
-        .name-row .animated-letter:nth-child(1) { animation-delay: 0.1s; }
-        .name-row .animated-letter:nth-child(2) { animation-delay: 0.2s; }
-        .name-row .animated-letter:nth-child(3) { animation-delay: 0.3s; }
-        .name-row .animated-letter:nth-child(4) { animation-delay: 0.4s; }
-        .name-row .animated-letter:nth-child(5) { animation-delay: 0.5s; }
-        .name-row .animated-letter:nth-child(6) { animation-delay: 0.6s; }
-
-        .name-row:last-child .animated-letter {
-            animation-delay: calc(0.7s + var(--delay, 0s));
-        }
-
-        .code-effect::before {
-            content: '•';
-            margin-right: 0.5rem;
-            opacity: 0.5;
-        }
-
-        .content-below {
-            margin-top: 3rem;
-            font-family: var(--content-font);
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: rgba(18, 16, 16, 0.1);
             opacity: 0;
-            animation: typeIn 0.5s ease-out forwards;
-            animation-delay: 1.5s;
+            z-index: 2;
+            pointer-events: none;
+            animation: flicker 0.15s infinite;
+        }
+
+        .cursor {
+            animation: blink 1s infinite;
+        }
+
+        .vintage-monitor {
+            border-radius: 20px;
+            box-shadow: 
+                inset 0 0 50px rgba(15, 168, 24, 0.2),
+                inset 0 0 100px rgba(0, 0, 0, 0.5),
+                0 0 30px rgba(15, 168, 24, 0.1);
+            position: relative;
+            background: #000800;
+        }
+
+        .monitor-glare {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(
+                    circle at 50% 50%,
+                    rgba(255,255,255,.03) 0%,
+                    rgba(255,255,255,.01) 50%,
+                    rgba(255,255,255,0) 100%
+                );
+            pointer-events: none;
+            z-index: 3;
+        }
+
+        .text-green-vintage {
+            color: #0fa818;
+        }
+
+        .terminal-content {
+            font-size: 1.4rem;
+            line-height: 1.2;
+            letter-spacing: 0.5px;
+            padding: 1rem;
+        }
+
+        .command-line {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
         }
     </style>
 </head>
-<body class="min-h-screen flex flex-col">
-    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: none;">
-        <defs>
-            <filter id="goo">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
-                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9" result="goo" />
-            </filter>
-        </defs>
-    </svg>
-
-    <header class="p-6 flex justify-between items-center fixed w-full top-0 bg-white/90 backdrop-blur-sm z-50">
-        <div class="text-sm text-gray-700 font-medium code-effect" id="timeDisplay">
-            KHAIRUAQSARA_YK <span id="currentTime">12:25 PM</span>
-        </div>
-        <nav class="flex items-center space-x-8">
-            <a href="https://khairu-aqsara.net" class="nav-link text-gray-700">HOME</a>
-            <a href="https://khairu-aqsara.net/blog" class="nav-link text-gray-700">BLOG</a>
-            <a href="mailto:wenkhairu@gmail.com" class="lets-talk text-white px-4 py-2 ml-4">LETS_TALK</a>
-        </nav>
-    </header>
-
-    <main class="flex-1 flex items-center justify-center min-h-screen">
-        <div class="text-center">
-            <div class="name-container">
-                <div class="name-row" id="firstName"></div>
-                <div class="name-row" id="lastName"></div>
-            </div>
-            <div class="content-below">
-                <p class="text-gray-700 mb-2 code-effect">Fullstack Developer & Movies Enthusiast</p>
-                <p class="text-gray-700 mb-4 code-effect">Based in Yogyakarta</p>
+<body class="bg-black min-h-screen relative">
+    <div class="h-[calc(100vh-3rem)]">
+        <div class="vintage-monitor h-full">
+            <div class="crt-screen h-full">
+                <div class="monitor-glare"></div>
+                <div class="terminal-content p-10">
+                    <div class="command-line">
+                        <span class="text-green-vintage">root@mainframe</span>
+                        <span class="text-green-vintage">:</span>
+                        <span class="text-green-vintage">~</span>
+                        <span class="text-green-vintage">$ </span>
+                        <span id="command" class="text-green-vintage"></span>
+                        <span class="cursor text-green-vintage">█</span>
+                    </div>
+                    <div id="output" class="text-green-vintage whitespace-pre-wrap"></div>
+                </div>
             </div>
         </div>
-    </main>
+    </div>
+
+    <footer class="fixed bottom-0 w-full bg-black text-green-500 text-lg h-12 flex items-center justify-center border-t border-green-900 font-['VT323']">
+        Created By <a href="https://khairu-aqsara.net" class="text-green-400 hover:text-green-300 mx-1">Khairu</a> Inspired by <a href="https://github.com/bartobri/no-more-secrets" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:text-green-300 mx-1">no-more-secrets</a> - Implemented in JavaScript
+    </footer>
 
     <script>
-        document.documentElement.style.scrollBehavior = 'smooth';
+        // JavaScript remains exactly the same
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+[]{}|;:,.<>?';
+        const originalText = `PERSONNEL FILE: KHAIRU AQSARA
 
-        function wrapLetters(elementId, text) {
-            const element = document.getElementById(elementId);
-            const letters = text.split('');
-            element.innerHTML = letters
-                .map((letter, index) => {
-                    const delay = index * 0.1;
-                    return `
-                        <span class="animated-letter" style="--delay: ${delay}s">
-                            <span>${letter}</span>
-                            <div class="liquid-content"></div>
-                        </span>
-                    `;
-                })
-                .join('');
+* * * CONFIDENTIAL * * *
+
+SUBJECT PROFILE
+Name: Khairu Aqsara
+Role: Software Engineer
+Location: Yogyakarta Indonesia
+Email : wenkhairu@gmail.com
+
+TECHNICAL EXPERTISE
+- Full Stack Development
+- Cloud Architecture
+- DevOps Engineering
+- System Design
+- Movie Aunthusiast
+- Anime Lover
+
+STATUS: ACTIVE
+Access Level: MAXIMUM NEWBE
+Security Clearance: GRANTED
+
+WARNING: This information is classified.
+Unauthorized access will be prosecuted.
+
+Press any key to continue...`;
+
+        let currentText = '';
+        let isDecrypting = false;
+        let animationFrame;
+        const scrambleDelay = 50;
+        const revealDelay = 25;
+
+        const commandElement = document.getElementById('command');
+        const outputElement = document.getElementById('output');
+
+        async function typeCommand() {
+            const command = 'decrypt --file personnel_khairu.dat';
+            for (let i = 0; i < command.length; i++) {
+                commandElement.textContent += command[i];
+                await new Promise(resolve => setTimeout(resolve, 50));
+            }
         }
 
-        // Initialize the animated text
-        wrapLetters('firstName', 'Khairu');
-        wrapLetters('lastName', 'Aqsara');
-
-        // Time update function
-        function updateTime() {
-            const now = new Date();
-            const timeFormatter = new Intl.DateTimeFormat('en-US', {
-                hour: 'numeric',
-                minute: '2-digit',
-                hour12: true
-            });
-            const formattedTime = timeFormatter.format(now);
-            document.getElementById('currentTime').textContent = formattedTime;
+        function getRandomChar() {
+            return characters[Math.floor(Math.random() * characters.length)];
         }
 
-        // Update time immediately and then every minute
-        updateTime();
-        setInterval(updateTime, 60000);
+        function scrambleText() {
+            let scrambled = '';
+            for (let i = 0; i < originalText.length; i++) {
+                if (originalText[i] === '\n') {
+                    scrambled += '\n';
+                } else if (originalText[i] === ' ') {
+                    scrambled += ' ';
+                } else {
+                    scrambled += getRandomChar();
+                }
+            }
+            return scrambled;
+        }
+
+        function decrypt() {
+            let revealsCount = 0;
+            const positions = new Set();
+            
+            function revealCharacter() {
+                if (revealsCount >= originalText.length) {
+                    isDecrypting = false;
+                    return;
+                }
+
+                let position;
+                do {
+                    position = Math.floor(Math.random() * originalText.length);
+                } while (positions.has(position));
+
+                positions.add(position);
+                revealsCount++;
+
+                const textArray = currentText.split('');
+                textArray[position] = originalText[position];
+                currentText = textArray.join('');
+                outputElement.textContent = currentText;
+
+                setTimeout(revealCharacter, revealDelay);
+            }
+
+            revealCharacter();
+        }
+
+        function animate() {
+            if (!isDecrypting) return;
+            
+            currentText = scrambleText();
+            outputElement.textContent = currentText;
+            animationFrame = requestAnimationFrame(animate);
+        }
+
+        async function startAnimation() {
+            if (isDecrypting) return;
+            
+            await typeCommand();
+            
+            isDecrypting = true;
+            animate();
+            
+            setTimeout(() => {
+                cancelAnimationFrame(animationFrame);
+                decrypt();
+            }, 2000);
+        }
+
+        window.addEventListener('load', startAnimation);
     </script>
 </body>
 </html>
