@@ -1,10 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Khairu Aqsara - Software Engineer Portfolio">
+    <meta name="keywords" content="software engineer, full stack developer, cloud architect, devops">
+    <meta name="author" content="Khairu Aqsara">
+    <title>Khairu Aqsara - Terminal Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @keyframes blink {
             0%, 100% { opacity: 1; }
@@ -35,6 +42,11 @@
             100% { opacity: 0.98; }
         }
 
+        @keyframes scanline {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(100%); }
+        }
+
         .crt-screen {
             animation: flicker 0.15s infinite;
             font-family: 'VT323', monospace;
@@ -62,19 +74,21 @@
             animation: fadeIn 0.15s;
         }
 
-        .crt-screen::after {
-            content: " ";
-            display: block;
+        .scanline {
             position: absolute;
             top: 0;
             left: 0;
-            bottom: 0;
-            right: 0;
-            background: rgba(18, 16, 16, 0.1);
-            opacity: 0;
-            z-index: 2;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(
+                to bottom,
+                rgba(15, 168, 24, 0) 0%,
+                rgba(15, 168, 24, 0.1) 50%,
+                rgba(15, 168, 24, 0) 100%
+            );
+            animation: scanline 8s linear infinite;
             pointer-events: none;
-            animation: flicker 0.15s infinite;
+            z-index: 3;
         }
 
         .cursor {
@@ -110,10 +124,11 @@
 
         .text-green-vintage {
             color: #0fa818;
+            text-shadow: 0 0 5px rgba(15, 168, 24, 0.5);
         }
 
         .terminal-content {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             line-height: 1.2;
             letter-spacing: 0.5px;
             padding: 1rem;
@@ -122,35 +137,104 @@
         .command-line {
             font-size: 1.4rem;
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .loading {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 13px;
+        }
+
+        .loading div {
+            position: absolute;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: #0fa818;
+            animation: loading 1.2s linear infinite;
+        }
+
+        .loading div:nth-child(1) { left: 8px; animation-delay: 0s; }
+        .loading div:nth-child(2) { left: 32px; animation-delay: 0.2s; }
+        .loading div:nth-child(3) { left: 56px; animation-delay: 0.4s; }
+
+        @keyframes loading {
+            0% { transform: scale(0); }
+            50% { transform: scale(1); }
+            100% { transform: scale(0); }
+        }
+
+        .social-links a {
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.2);
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body class="bg-black min-h-screen relative">
+    <div id="loading" class="fixed inset-0 bg-black z-50 flex items-center justify-center">
+        <div class="text-center">
+            <div class="loading">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <p class="text-green-vintage mt-4">INITIALIZING SYSTEM...</p>
+        </div>
+    </div>
+
     <div class="h-[calc(100vh-3rem)]">
         <div class="vintage-monitor h-full">
             <div class="crt-screen h-full">
+                <div class="scanline"></div>
                 <div class="monitor-glare"></div>
                 <div class="terminal-content p-10">
                     <div class="command-line">
-                        <span class="text-green-vintage">root@mainframe</span>
+                        <span class="text-green-vintage" aria-label="command prompt">root@mainframe</span>
                         <span class="text-green-vintage">:</span>
                         <span class="text-green-vintage">~</span>
                         <span class="text-green-vintage">$ </span>
                         <span id="command" class="text-green-vintage"></span>
                         <span class="cursor text-green-vintage">█</span>
                     </div>
-                    <div id="output" class="text-green-vintage whitespace-pre-wrap"></div>
+                    <div id="output" class="text-green-vintage whitespace-pre-wrap" aria-live="polite"></div>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="fixed bottom-0 w-full bg-black text-green-500 text-lg h-12 flex items-center justify-center border-t border-green-900 font-['VT323']">
-        Created By <a href="https://khairu-aqsara.net" class="text-green-400 hover:text-green-300 mx-1">Khairu</a> Inspired by <a href="https://github.com/bartobri/no-more-secrets" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:text-green-300 mx-1">no-more-secrets</a> - Implemented in JavaScript
+    <footer class="fixed bottom-0 w-full bg-black text-green-500 text-lg h-12 flex items-center justify-between px-4 border-t border-green-900 font-['VT323']">
+        <div>
+            Created By <a href="https://khairu-aqsara.net" class="text-green-400 hover:text-green-300">Khairu</a>
+        </div>
+        <div class="social-links flex gap-4">
+            <a href="https://github.com/khairu-aqsara" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:text-green-300" aria-label="GitHub">
+                <i class="fab fa-github text-xl"></i>
+            </a>
+            <a href="https://linkedin.com/in/khairuaqsara" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:text-green-300" aria-label="LinkedIn">
+                <i class="fab fa-linkedin text-xl"></i>
+            </a>
+            <a href="mailto:wenkhairu@gmail.com" class="text-green-400 hover:text-green-300" aria-label="Email">
+                <i class="fas fa-envelope text-xl"></i>
+            </a>
+        </div>
+        <div>
+            Inspired by <a href="https://github.com/bartobri/no-more-secrets" target="_blank" rel="noopener noreferrer" class="text-green-400 hover:text-green-300">no-more-secrets</a>
+        </div>
     </footer>
 
     <script>
-        // JavaScript remains exactly the same
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()_+[]{}|;:,.<>?';
         const originalText = `PERSONNEL FILE: KHAIRU AQSARA
 
@@ -160,24 +244,35 @@ SUBJECT PROFILE
 Name: Khairu Aqsara
 Role: Software Engineer
 Location: Yogyakarta Indonesia
-Email : wenkhairu@gmail.com
+Email: wenkhairu@gmail.com
 
 TECHNICAL EXPERTISE
 - Full Stack Development
 - Cloud Architecture
 - DevOps Engineering
 - System Design
-- Movie Aunthusiast
+- Movie Enthusiast
 - Anime Lover
 
+CURRENT PROJECTS
+- Cloud Infrastructure Optimization
+- Microservices Architecture
+- AI/ML Integration Projects
+
+LANGUAGES & TOOLS
+- Python, JavaScript, Go
+- AWS, GCP, Azure
+- Docker, Kubernetes
+- React, Node.js, Django
+
 STATUS: ACTIVE
-Access Level: MAXIMUM NEWBE
+Access Level: SENIOR ENGINEER
 Security Clearance: GRANTED
 
 WARNING: This information is classified.
 Unauthorized access will be prosecuted.
 
-Press any key to continue...`;
+[Press any key to continue...]`;
 
         let currentText = '';
         let isDecrypting = false;
@@ -185,11 +280,19 @@ Press any key to continue...`;
         const scrambleDelay = 50;
         const revealDelay = 25;
 
+        const loadingElement = document.getElementById('loading');
         const commandElement = document.getElementById('command');
         const outputElement = document.getElementById('output');
 
+        function simulateSystemBoot() {
+            setTimeout(() => {
+                loadingElement.classList.add('hidden');
+                startAnimation();
+            }, 2000);
+        }
+
         async function typeCommand() {
-            const command = 'decrypt --file personnel_khairu.dat';
+            const command = 'decrypt --file personnel_khairu.dat --level=maximum';
             for (let i = 0; i < command.length; i++) {
                 commandElement.textContent += command[i];
                 await new Promise(resolve => setTimeout(resolve, 50));
@@ -221,6 +324,7 @@ Press any key to continue...`;
             function revealCharacter() {
                 if (revealsCount >= originalText.length) {
                     isDecrypting = false;
+                    outputElement.setAttribute('aria-label', 'Decryption complete');
                     return;
                 }
 
@@ -257,6 +361,7 @@ Press any key to continue...`;
             await typeCommand();
             
             isDecrypting = true;
+            outputElement.setAttribute('aria-label', 'Decrypting data');
             animate();
             
             setTimeout(() => {
@@ -265,7 +370,14 @@ Press any key to continue...`;
             }, 2000);
         }
 
-        window.addEventListener('load', startAnimation);
+        window.addEventListener('load', simulateSystemBoot);
+
+        // Enable keyboard interaction
+        document.addEventListener('keypress', () => {
+            if (!isDecrypting && loadingElement.classList.contains('hidden')) {
+                startAnimation();
+            }
+        });
     </script>
 </body>
 </html>
