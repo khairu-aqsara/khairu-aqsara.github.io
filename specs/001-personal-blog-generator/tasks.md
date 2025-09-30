@@ -16,8 +16,8 @@ Hugo static site generator structure at repository root:
 - **Automation**: `.github/workflows/`
 
 ## Phase 3.1: Environment Setup
-- [ ] **T001** [P] Install Hugo Extended >= 0.115 locally and verify version with `hugo version`
-- [ ] **T002** [P] Initialize Hugo site structure with `hugo new site . --force`
+- [x] **T001** [P] Install Hugo Extended >= 0.115 locally and verify version with `hugo version` (Installed hugo v0.150.1 extended)
+- [x] **T002** [P] Initialize Hugo site structure with `hugo new site . --force` (Not run to avoid overwriting existing, structure manually created)
 - [x] **T003** [P] Create required directories: `mkdir -p content/{posts,pages} static/images assets/{css,js}`
 
 ## Phase 3.2: Theme & Configuration Setup
