@@ -1,0 +1,144 @@
+# Hugo Site Configuration Contract
+# This file defines the expected structure and values for hugo.toml
+
+baseURL = "https://khairu-aqsara.github.io"
+languageCode = "en-us"
+title = "Khairu Aqsara - Personal Blog"
+theme = "PaperMod"
+
+# Hugo settings
+defaultContentLanguage = "en"
+enableRobotsTXT = true
+enableGitInfo = true
+enableEmoji = true
+hasCJKLanguage = false
+
+# Build settings  
+minify = true
+
+[build]
+  writeStats = true
+  
+[minify]
+  disableXML = false
+  minifyOutput = true
+
+# Markup configuration
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = false
+      hardWraps = false
+    [markup.goldmark.parser]
+      autoHeadingID = true
+      autoHeadingIDType = "github"
+  
+  [markup.highlight]
+    style = "github"
+    lineNos = true
+    lineNumbersInTable = false
+    tabWidth = 4
+
+# Menu configuration
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 10
+  
+  [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 20
+    
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    weight = 30
+    
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 40
+
+# Taxonomies
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+
+# Permalinks
+[permalinks]
+  posts = "/posts/:slug/"
+
+# Params for PaperMod theme
+[params]
+  author = "Khairu Aqsara"
+  description = "Personal documentation, technical insights, and project showcases"
+  keywords = ["software engineering", "web development", "cloud architecture", "personal blog"]
+  
+  # Theme settings
+  defaultTheme = "auto"
+  disableThemeToggle = false
+  ShowReadingTime = true
+  ShowShareButtons = false
+  ShowPostNavLinks = true
+  ShowBreadCrumbs = true
+  ShowCodeCopyButtons = true
+  ShowWordCount = true
+  ShowRssButtonInSectionTermList = true
+  UseHugoToc = true
+  disableSpecial1stPost = false
+  disableScrollToTop = false
+  comments = false
+  hidemeta = false
+  hideSummary = false
+  showtoc = false
+  tocopen = false
+  
+  # Home page settings
+  [params.homeInfoParams]
+    Title = "Welcome to My Digital Garden"
+    Content = "Personal documentation, technical learnings, and project showcases. A place where I document my journey as a software engineer and share insights that might help others."
+  
+  # Social links
+  [params.socialIcons]
+    [[params.socialIcons]]
+      name = "github"
+      url = "https://github.com/khairu-aqsara"
+    
+    [[params.socialIcons]]
+      name = "linkedin"
+      url = "https://linkedin.com/in/khairuaqsara"
+      
+    [[params.socialIcons]]
+      name = "email"
+      url = "mailto:wenkhairu@gmail.com"
+
+  # Search settings
+  [params.fuseOpts]
+    isCaseSensitive = false
+    shouldSort = true
+    location = 0
+    distance = 1000
+    threshold = 0.4
+    minMatchCharLength = 0
+    keys = ["title", "permalink", "summary", "content"]
+
+# Output formats
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  page = ["HTML"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  term = ["HTML", "RSS"]
+
+# Asset processing
+[params.assets]
+  favicon = "/favicon.ico"
+  favicon16x16 = "/favicon-16x16.png"
+  favicon32x32 = "/favicon-32x32.png"
+  apple_touch_icon = "/apple-touch-icon.png"

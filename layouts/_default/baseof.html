@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode | default "en" }}" dir="{{ .Language.LanguageDirection | default "auto" }}">
+<head>
+    {{- partial "head.html" . }}
+    
+    {{/* Hugo Pipes Asset Processing */}}
+    {{- $mainCSS := resources.Get "css/main.scss" }}
+    {{- $customCSS := resources.Get "css/custom.scss" }}
+    
+    {{- if $mainCSS }}
+        {{- $mainCSS = $mainCSS | css.Sass (dict "targetPath" "css/main.css") }}
+        {{- if hugo.IsProduction }}
+            {{- $mainCSS = $mainCSS | minify | fingerprint }}
+        {{- end }}
+        <link rel="stylesheet" href="{{ $mainCSS.RelPermalink }}"{{ if hugo.IsProduction }} integrity="{{ $mainCSS.Data.Integrity }}"{{ end }}>
+    {{- end }}
+    
+    {{- if $customCSS }}
+        {{- $customCSS = $customCSS | css.Sass (dict "targetPath" "css/custom.css") }}
+        {{- if hugo.IsProduction }}
+            {{- $customCSS = $customCSS | minify | fingerprint }}
+        {{- end }}
+        <link rel="stylesheet" href="{{ $customCSS.RelPermalink }}"{{ if hugo.IsProduction }} integrity="{{ $customCSS.Data.Integrity }}"{{ end }}>
+    {{- end }}
+</head>
+
+<body class="{{- if (or (ne .Kind "page") (eq .Layout "archives") (eq .Layout "search")) -}}{{- print "list" -}}{{- end -}}
+{{- if eq site.Params.defaultTheme "dark" -}}{{- print " dark" }}{{- end -}}" id="top">
+    {{- partialCached "header.html" . .Page -}}
+    <main class="main">
+        {{- block "main" . }}{{- end }}
+    </main>
+    {{- partialCached "footer.html" . .Page -}}
+
+    {{/* Hugo Pipes JavaScript Processing */}}
+    {{- $mainJS := resources.Get "js/main.js" }}
+    {{- if $mainJS }}
+        {{- if hugo.IsProduction }}
+            {{- $mainJS = $mainJS | minify | fingerprint }}
+        {{- end }}
+        <script src="{{ $mainJS.RelPermalink }}"{{ if hugo.IsProduction }} integrity="{{ $mainJS.Data.Integrity }}"{{ end }} defer></script>
+    {{- end }}
+    
+    {{- partial "extend_footer.html" . -}}
+</body>
+</html>
