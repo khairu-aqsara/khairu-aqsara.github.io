@@ -23,7 +23,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.121.0
+      HUGO_VERSION: 0.150.1
     steps:
       - name: Install Hugo CLI
         run: |
@@ -54,6 +54,7 @@ jobs:
         uses: actions/upload-pages-artifact@v2
         with:
           path: ./public
+
   deploy:
     environment:
       name: github-pages

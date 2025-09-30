@@ -1,0 +1,161 @@
+{{- define "main" }}
+
+{{- if .Content }}
+<div class="post-content">
+  {{ .Content }}
+</div>
+{{- end }}
+
+<header class="page-header">
+  <h1>
+    {{ .Title }}
+    {{- if and (or .IsHome .IsSection) (.Param "ShowRssButtonInSectionTermList") }}
+    <a href="index.xml" title="RSS" aria-label="RSS">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" height="23">
+        <path d="M4 11a9 9 0 0 1 9 9" />
+        <path d="M4 4a16 16 0 0 1 16 16" />
+        <circle cx="5" cy="19" r="1" />
+      </svg>
+    </a>
+    {{- end }}
+  </h1>
+  {{- if .Description }}
+  <div class="post-description">
+    {{ .Description | markdownify }}
+  </div>
+  {{- end }}
+</header>
+
+{{- $pages := union .RegularPages .Sections }}
+{{- if .IsHome }}
+  {{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- end }}
+{{- $paginator := .Paginate $pages }}
+
+{{- if and .IsHome site.Params.profileMode.enabled }}
+<!-- Profile Mode Homepage -->
+<div class="profile_container">
+  {{- if site.Params.profileMode.imageUrl }}
+  <img src="{{ site.Params.profileMode.imageUrl }}" alt="{{ site.Params.profileMode.imageTitle | default "profile image" }}" loading="lazy">
+  {{- end }}
+  <div class="profile_inner">
+    <h1>{{ site.Params.profileMode.title | default site.Title }}</h1>
+    <span>{{ site.Params.profileMode.subtitle }}</span>
+    {{- if site.Params.profileMode.buttons }}
+    <div class="buttons">
+      {{- range site.Params.profileMode.buttons }}
+      <a class="button" href="{{ .url }}" rel="noopener" title="{{ .name }}">
+        <span class="button-inner">{{ .name }}</span>
+      </a>
+      {{- end }}
+    </div>
+    {{- end }}
+  </div>
+</div>
+{{- else }}
+<!-- Regular List Mode -->
+{{- if not (and .IsHome site.Params.profileMode.enabled) }}
+{{- range $index, $page := $paginator.Pages }}
+  {{- $class := "post-entry" }}
+  {{- $user_preferred := or site.Params.disableSpecial1stPost site.Params.homeInfoParams }}
+  {{- if (and $.IsHome (eq $index 0) (not $user_preferred)) }}
+    {{- $class = "first-entry" }}
+  {{- else if $page.Weight }}
+    {{- $class = printf "post-entry weight-%d" $page.Weight }}
+  {{- end }}
+
+<article class="{{ $class }}">
+  {{- $isHidden := ($page.Params.cover.hidden | default site.Params.cover.hiddenInList | default site.Params.cover.hidden) }}
+  {{- if (and $page.Params.cover.image (not $isHidden)) }}
+  <figure class="entry-cover">
+    <a href="{{ $page.RelPermalink }}" aria-label="{{ $page.Title }}">
+      {{- $altText := ($page.Params.cover.alt | default $page.Title | default "cover") }}
+      {{- $coverImage := "" }}
+      {{- if $page.Params.cover.relative }}
+        {{- $coverImage = $page.Resources.GetMatch (printf "*%s*" $page.Params.cover.image) }}
+      {{- else }}
+        {{- $coverImage = resources.Get $page.Params.cover.image }}
+      {{- end }}
+      {{- if $coverImage }}
+        <img loading="lazy" src="{{ $coverImage.RelPermalink }}" alt="{{ $altText }}">
+      {{- else }}
+        <img loading="lazy" src="{{ $page.Params.cover.image }}" alt="{{ $altText }}">
+      {{- end }}
+    </a>
+  </figure>
+  {{- end }}
+  
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+      <a href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
+    </h2>
+  </header>
+  
+  {{- if (ne $page.Description "") }}
+  <div class="entry-content">
+    <p>{{ $page.Description | markdownify }}</p>
+  </div>
+  {{- end }}
+  
+  {{- if not site.Params.hideMeta }}
+  <footer class="entry-footer">
+    <div class="entry-footer-details">
+      {{- if not site.Params.hideAuthor }}
+      <span class="entry-footer-detail">{{ $page.Params.author | default site.Params.author }}</span>
+      {{- end }}
+      <span class="separator">&middot;</span>
+      <time class="entry-footer-detail">{{ $page.Date.Format "January 2, 2006" }}</time>
+      {{- if $page.Params.tags }}
+      <span class="separator">&middot;</span>
+      <div class="entry-tags">
+        {{- range $index, $tag := $page.Params.tags }}
+        {{- if gt $index 0 }}, {{ end }}
+        <a href="{{ "/tags/" | relLangURL }}{{ $tag | urlize }}/">{{ $tag }}</a>
+        {{- end }}
+      </div>
+      {{- end }}
+      {{- if site.Params.ShowReadingTime }}
+      <span class="separator">&middot;</span>
+      <span class="entry-footer-detail">{{ $page.ReadingTime }} min read</span>
+      {{- end }}
+    </div>
+  </footer>
+  {{- end }}
+</article>
+{{- end }}
+{{- end }}
+{{- end }}
+
+{{- if gt $paginator.TotalPages 1 }}
+<footer class="page-footer">
+  <nav class="pagination">
+    {{- if $paginator.HasPrev }}
+    <a class="prev" href="{{ $paginator.Prev.URL }}">
+      «&nbsp;{{ i18n "prev_page" | default "Prev" }}
+    </a>
+    {{- end }}
+    {{- $ellipsisShown := false }}
+    {{- range $paginator.Pagers }}
+    {{- if eq . $paginator }}
+    <a class="current" aria-current="page">{{ .PageNumber }}</a>
+    {{- else if (or (le .PageNumber 2) (ge .PageNumber (sub $paginator.TotalPages 1))) }}
+    <a href="{{ .URL }}">{{ .PageNumber }}</a>
+    {{- else if (and (not $ellipsisShown) (gt (sub .PageNumber $paginator.PageNumber) 2)) }}
+    <span class="ellipsis">…</span>
+    {{- $ellipsisShown = true }}
+    {{- else if (and (not $ellipsisShown) (gt (sub $paginator.PageNumber .PageNumber) 2)) }}
+    <span class="ellipsis">…</span>
+    {{- $ellipsisShown = true }}
+    {{- end }}
+    {{- end }}
+    {{- if $paginator.HasNext }}
+    <a class="next" href="{{ $paginator.Next.URL }}">
+      {{ i18n "next_page" | default "Next" }}&nbsp;»
+    </a>
+    {{- end }}
+  </nav>
+</footer>
+{{- end }}
+
+{{- end }}
