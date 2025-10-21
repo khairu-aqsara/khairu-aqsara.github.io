@@ -1,0 +1,33 @@
+/* Custom styles for khairu-aqsara blog */
+
+/* Apply Funnel Display font to all titles and headings */
+h1, h2, h3, h4, h5, h6,
+.navbar-custom .navbar-brand,
+.intro-header .page-heading h1,
+.intro-header .post-heading h1,
+.post-preview a h2,
+.blog-post h1,
+.blog-post h2,
+.blog-post h3,
+.blog-post h4 {
+  font-family: "Funnel Display", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+/* Apply appropriate weights for different heading levels */
+h1, .navbar-custom .navbar-brand {
+  font-weight: 700;
+}
+
+h2 {
+  font-weight: 600;
+}
+
+h3 {
+  font-weight: 500;
+}
+
+h4, h5, h6 {
+  font-weight: 400;
+}
