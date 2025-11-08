@@ -1,25 +1,27 @@
 /* Custom styles for khairu-aqsara blog */
 
-/* Local font faces: StyreneBLC Regular (400) and Medium used as Bold (700) */
+/* Local font faces */
+/* Body/content: Copernicus Book (400) */
 @font-face {
-  font-family: "StyreneBLC";
-  src: url("/assets/fonts/StyreneBLC-Regular.woff2") format("woff2");
+  font-family: "Copernicus";
+  src: url("/assets/fonts/Copernicus-Book.woff2") format("woff2");
   font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
+/* Headings/titles: StyreneA (use Medium file mapped to 700 if bold not available) */
 @font-face {
-  font-family: "StyreneBLC";
-  src: url("/assets/fonts/StyreneBLC-Medium.woff2") format("woff2");
+  font-family: "StyreneA";
+  src: url("/assets/fonts/StyreneA-Medium-Web.woff2") format("woff2");
   font-style: normal;
-  font-weight: 700; /* using Medium file for bold weight */
+  font-weight: 700; /* mapping Medium to bold weight */
   font-display: swap;
 }
 
-/* Wire the theme font variables to our local family */
+/* Wire the theme font variables */
 :root {
-  --body-font: "StyreneBLC", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --header-font: "StyreneBLC", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --body-font: "Copernicus", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --header-font: "StyreneA", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
 
 /* Headings and title-like elements use bold (700) */
