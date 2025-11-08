@@ -1,11 +1,28 @@
 /* Custom styles for khairu-aqsara blog */
 
-/* Override the CSS variables to apply Funnel Display font globally to all headers */
-:root {
-  --header-font: "Funnel Display", 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+/* Local font faces: StyreneBLC Regular (400) and Medium used as Bold (700) */
+@font-face {
+  font-family: "StyreneBLC";
+  src: url("/assets/fonts/StyreneBLC-Regular.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: "StyreneBLC";
+  src: url("/assets/fonts/StyreneBLC-Medium.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 700; /* using Medium file for bold weight */
+  font-display: swap;
 }
 
-/* Apply Funnel Display font with optical sizing to all titles and headings */
+/* Wire the theme font variables to our local family */
+:root {
+  --body-font: "StyreneBLC", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --header-font: "StyreneBLC", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Headings and title-like elements use bold (700) */
 h1, h2, h3, h4, h5, h6,
 .navbar-custom .navbar-brand,
 .intro-header .page-heading h1,
@@ -24,24 +41,8 @@ article h3,
 article h4,
 article h5,
 article h6 {
-  font-family: "Funnel Display", sans-serif !important;
-  font-optical-sizing: auto;
-  font-style: normal;
-}
-
-/* Apply appropriate weights for different heading levels */
-h1, .navbar-custom .navbar-brand {
   font-weight: 700;
 }
 
-h2 {
-  font-weight: 600;
-}
-
-h3 {
-  font-weight: 500;
-}
-
-h4, h5, h6 {
-  font-weight: 400;
-}
+/* Ensure body/content uses normal weight by default */
+body { font-weight: 400; }
