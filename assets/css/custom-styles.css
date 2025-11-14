@@ -44,7 +44,6 @@ article h4,
 article h5,
 article h6 {
   font-weight: 700;
-  letter-spacing: -4px;
 }
 
 /* Ensure body/content uses normal weight by default */
