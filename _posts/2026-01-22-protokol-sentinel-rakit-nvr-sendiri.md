@@ -1,7 +1,7 @@
 --- 
 layout: post
 title: "Protokol Sentinel: Saat Rumah Kebobolan dan CCTV Cuma Jadi Pajangan"
-subtitle: "Gas 3kg raib, rekaman bolong-bolong. Saatnya Devan ambil alih keamanan rumah dengan Nmap, Systemd, dan Samba Server."
+subtitle: "Gas 5kg raib, rekaman bolong-bolong. Saatnya Devan ambil alih keamanan rumah dengan Nmap, Systemd, dan Samba Server."
 tags: [security, nmap, ffmpeg, raspberry-pi, systemd, samba, tutorial]
 author: Kuli Kode
 ---
@@ -18,7 +18,7 @@ Devan langsung berdiri, tangannya ngepal. Ini bukan cuma soal kehilangan barang 
 
 "CCTV gimana, Kak?" tanya Devan, nyoba tetep logis meskipun darahnya lagi mendidih. "Kan kita pasang O-KAM Pro di teras sama di lorong samping."
 
-Kak Myesha ngebanting pelan HP-nya ke meja kerja Devan. Layarnya nampilin aplikasi O-KAM Pro yang muter-muter *buffering*. "Itu dia masalahnya! Aku udah cek rekaman semalem dari jam 2 sampe jam 4 pagi. Isinya zonk! Kadang ada rekaman 10 detik, terus tiba-tiba lompat ke 10 menit kemudian. Pas kejadian... nggak ada rekamannya sama sekali!"
+Kak Myesha ngebanting pelan HP-nya ke meja kerja Devan. Layarnya nampilin aplikasi O-KAM Pro yang muter-muter *buffering*. "Itu dia masalahnya! Aku udah cek rekaman semalem dari jam 12 Malam sampe jam 7 pagi. Rekaman untuk tanggal 7 sampai 11 itu ada, tapi untuk 12 dan 13 Isinya zonk!. Pas kejadian... nggak ada rekamannya sama sekali!"
 
 "Hah? Kok bisa?" Devan ngambil HP kakaknya, nge-scroll timeline yang warnanya biru-biru putus itu. "Motion detection-nya aktif kan?"
 
