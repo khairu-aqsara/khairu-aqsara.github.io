@@ -8,11 +8,11 @@ tags: [PQC, Quantum Computing, Security, Tech Tale]
 
 ## Bab 1: Mendung di Sleman dan Ancaman yang Tak Terlihat
 
-Sore itu, Sleman lagi agak sendu. Langit di atas Merapi ketutup mendung tipis, tapi udara di teras rumah masih kerasa gerah. Devan lagi asik nyeruput kopi jos-nya, matanya nggak lepas dari layar laptop yang penuh dengan barisan kode C++. Di sebelahnya, Myesha—adeknya yang paling kritis soal urusan sekuriti—lagi baca-baca jurnal terbaru dari NIST.
+Sore itu, Sleman lagi agak sendu. Langit di atas Merapi ketutup mendung tipis, tapi udara di teras rumah masih kerasa gerah. Devan lagi asik nyeruput kopi jos-nya, matanya nggak lepas dari layar laptop yang penuh dengan barisan kode C++. Di sebelahnya, Myesha—kakaknya yang paling kritis soal urusan sekuriti—lagi baca-baca jurnal terbaru dari NIST.
 
-"Bang," celetuk Myesha tiba-tiba, bikin Devan hampir kesedak ampas kopi.
+"Van," celetuk Myesha tiba-tiba, bikin Devan hampir kesedak ampas kopi.
 
-"Oit, nape Mes?" sahut Devan sambil ngelap bibirnya.
+"Oit, nape Kak?" sahut Devan sambil ngelap bibirnya.
 
 "Lu tau nggak sih, kalau algoritma RSA sama ECC yang kita bangga-banggain buat enkripsi NVR rakitan kita kemarin itu... sebenernya lagi di ujung tanduk?"
 
@@ -22,11 +22,11 @@ Myesha ngegeleng pelan. "Itu kalau kita ngomongin komputer klasik, Bang. Tapi ma
 
 Devan naruh gelas kopinya. Topik ini emang udah lama dia denger, tapi denger Myesha ngomong dengan nada seserius itu di sore yang tenang di Sleman ini bikin dia ngerasa... ada urgensi yang beda. "Jadi, kita harus gimana? Balik ke zaman tuker pesan pake kurir burung merpati?"
 
-"Ya nggak lah, Bang. Makanya ada yang namanya *Post-Quantum Cryptography* atau PQC. Ini bukan kriptografi yang jalan di komputer kuantum, tapi kriptografi klasik—yang jalan di komputer biasa kita—tapi didesain biar tahan banting lawan serangan komputer kuantum."
+"Ya nggak lah, Van. Makanya ada yang namanya *Post-Quantum Cryptography* atau PQC. Ini bukan kriptografi yang jalan di komputer kuantum, tapi kriptografi klasik—yang jalan di komputer biasa kita—tapi didesain biar tahan banting lawan serangan komputer kuantum."
 
-Devan manggut-manggut. "Oke, Mes. Kayaknya menarik nih buat kita bedah. Mumpung hujan belum turun, ceritain ke gue gimana cara kerjanya."
+Devan manggut-manggut. "Oke, Kak. Kayaknya menarik nih buat kita bedah. Mumpung hujan belum turun, ceritain ke gue gimana cara kerjanya."
 
-Myesha tersenyum, lalu mulai ngetik sesuatu di laptopnya. "Gini Bang, intinya kita butuh masalah matematika yang lebih ribet daripada sekadar faktorin bilangan prima gede..."
+Myesha tersenyum, lalu mulai ngetik sesuatu di laptopnya. "Gini Dek, intinya kita butuh masalah matematika yang lebih ribet daripada sekadar faktorin bilangan prima gede..."
 
 ---
 
@@ -34,7 +34,7 @@ Myesha tersenyum, lalu mulai ngetik sesuatu di laptopnya. "Gini Bang, intinya ki
 
 Myesha mulai jelasin kalau salah satu kandidat terkuat buat PQC itu namanya *Lattice-based Cryptography*. 
 
-"Bayangin gini Bang," kata Myesha sambil nunjuk ke ubin teras rumah mereka. "Ubin ini kan kotak-kotak rapi. Ini namanya kisi atau *lattice*. Di kriptografi klasik, kita mainan angka prima. Di *lattice*, kita mainan titik-titik di ruang multi-dimensi yang jumlah dimensinya bisa ribuan."
+"Bayangin gini Van," kata Myesha sambil nunjuk ke ubin teras rumah mereka. "Ubin ini kan kotak-kotak rapi. Ini namanya kisi atau *lattice*. Di kriptografi klasik, kita mainan angka prima. Di *lattice*, kita mainan titik-titik di ruang multi-dimensi yang jumlah dimensinya bisa ribuan."
 
 "Ribuan dimensi?" Devan geleng-geleng. "Ngebayangin tiga dimensi aja udah pusing gue."
 
@@ -83,9 +83,9 @@ Devan ngeliatin kodenya dengan serius. "Jadi intinya kita nyembunyiin rahasia di
 
 ## Bab 3: Kode-Kode Rahasia dari Masa Lalu (Code-based Cryptography)
 
-Gak lama kemudian, Jovian—kakak mereka yang paling tua—datang bawa sepiring pisang goreng anget. "Lagi bahas apa nih? Serius amat, ampe pisang goreng dicuekin," canda Jovian.
+Gak lama kemudian, Jovian—adek mereka yang paling bontot—datang bawa sepiring pisang goreng anget. "Lagi bahas apa nih? Serius amat, ampe pisang goreng dicuekin," canda Jovian.
 
-"Lagi bahas PQC, Mas," jawab Myesha. "Lagi jelasin ke Bang Devan soal alternatif RSA."
+"Lagi bahas PQC, Dek," jawab Myesha. "Lagi jelasin ke Devan soal alternatif RSA."
 
 Jovian duduk, ngambil satu pisang goreng. "Oalah, PQC. Kalian udah bahas McEliece belum? Itu kan barang antik yang sekarang jadi primadona lagi."
 
@@ -93,7 +93,7 @@ Devan noleh. "McEliece? Nama apa itu? Kayak nama merk sereal."
 
 Jovian ketawa. "Itu nama Robert McEliece, yang nemuin kriptosistem berbasis kode koreksi error (*error-correcting codes*) tahun 1978. Bayangin, algoritma dari tahun 70-an, tapi ampe sekarang belum ada yang bisa nembus pake komputer kuantum."
 
-"Kok bisa, Mas?" tanya Devan penasaran.
+"Kok bisa, Dek?" tanya Devan penasaran.
 
 "Prinsipnya mirip kayak kita ngirim data lewat satelit," jelas Jovian. "Kadang datanya korup di jalan, makanya butuh kode buat benerin error itu, kayak kode Reed-Solomon atau kode Goppa. Nah, McEliece ini pinter. Dia pake kode yang sebenernya gampang dibenerin, tapi dia 'acak-acak' struktur kodenya pake matriks transformasi rahasia. Jadi buat orang luar, itu keliatan kayak kode acak yang susah banget dibenerin error-nya. Tapi buat yang pegang kunci rahasia, mereka bisa benerin error itu dengan gampang."
 
@@ -130,7 +130,7 @@ print("McEliece: Menyembunyikan struktur kode di balik transformasi acak.")
 
 Hujan mulai rintik-rintik di Berbah, tetangga sebelah Sleman. Suaranya mulai kedengeran di atap seng. Myesha makin semangat. 
 
-"Ada lagi Bang, Mas," lanjut Myesha. "Namanya *Isogeny-based Cryptography*. Ini sebenernya pengembangan dari ECC (Elliptic Curve Cryptography) yang kita pake sekarang. Tapi alih-alih cuma mainan titik di satu kurva, kita mainan 'peta' atau hubungan antar banyak kurva elliptic. Namanya *Isogeny*."
+"Ada lagi Van, Dek," lanjut Myesha. "Namanya *Isogeny-based Cryptography*. Ini sebenernya pengembangan dari ECC (Elliptic Curve Cryptography) yang kita pake sekarang. Tapi alih-alih cuma mainan titik di satu kurva, kita mainan 'peta' atau hubungan antar banyak kurva elliptic. Namanya *Isogeny*."
 
 Devan nyoba nangkep maksudnya. "Jadi kita pindah-pindah dari satu kurva ke kurva lain gitu?"
 
@@ -171,7 +171,7 @@ isogenyExchange();
 
 Malam makin larut. Kopi udah abis, pisang goreng pun tinggal remah-remahnya. Devan, Myesha, dan Jovian masih asik diskusi. Mereka ngebayangin gimana kalau nanti mereka pulang ke kampung halaman di Takengon, Bener Meriah, atau main ke Krui, dan semua sistem di sana udah pake PQC.
 
-"Intinya Bang," kata Jovian sambil nutup laptopnya Devan. "Dunia sekuriti itu nggak pernah berhenti. Dulu kita pikir RSA itu abadi, ternyata ada komputer kuantum. Besok mungkin ada lagi teknologi baru yang lebih gila."
+"Intinya Kak, Dek," kata Devan sambil nutup laptopnya. "Dunia sekuriti itu nggak pernah berhenti. Dulu kita pikir RSA itu abadi, ternyata ada komputer kuantum. Besok mungkin ada lagi teknologi baru yang lebih gila."
 
 Devan mengangguk. "Gue jadi sadar, PQC itu bukan cuma soal matematika yang rumit. Ini soal kita, sebagai *kuli kode*, harus selalu satu langkah di depan. Kita nggak boleh nyaman sama apa yang kita punya sekarang."
 
@@ -179,7 +179,7 @@ Devan mengangguk. "Gue jadi sadar, PQC itu bukan cuma soal matematika yang rumit
 
 Devan berdiri, ngeregangin badannya. "Oke, besok kita coba pasang Kyber di sistem autentikasi projekan kita. Sekarang, waktunya tidur. Besok pagi kita harus ke Pante Raya ada urusan keluarga kan?"
 
-Myesha dan Jovian ketawa. "Siap, Bos!"
+Myesha dan Jovian ketawa. "Siap!"
 
 Sore di Sleman itu ditutup dengan pemahaman baru. Bahwa di balik ketenangan desa, ada perang digital yang nggak pernah usai, dan mereka siap buat jadi bagian dari barisan pertahanannya.
 
@@ -221,6 +221,6 @@ def pqc_demo():
 pqc_demo()
 ```
 
-Kriptografi itu kayak kopi jos di Sleman ini, Bang. Kelihatannya item dan biasa aja, tapi pas lo aduk dan lo rasain, ada proses 'pembakaran' ampas yang bikin rasanya unik dan kuat. PQC adalah arang panas yang bakal jagain data kita tetep 'anget' dan aman di masa depan.
+Kriptografi itu kayak kopi jos di Sleman ini, Kak. Kelihatannya item dan biasa aja, tapi pas lo aduk dan lo rasain, ada proses 'pembakaran' ampas yang bikin rasanya unik dan kuat. PQC adalah arang panas yang bakal jagain data kita tetep 'anget' dan aman di masa depan.
 
 Sampai jumpa di artikel berikutnya, tetaplah ngoding dan jangan lupa bahagia!
