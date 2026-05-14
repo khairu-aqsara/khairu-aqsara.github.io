@@ -53,7 +53,11 @@ To add a new blog post:
 4.  Commit and push the changes to the GitHub repository. GitHub Pages will automatically build and deploy the new post.
 5.  Always include emotional sense when writing the posts
 6.  Always follow existing post pattern, so all post will have the same pattern like emotion aspect etc
-7.  If you need to mention someone or there is a character in the post always use Devan, Myesha or Jovian as a main character or use all of them if needed, they are brothers and sisters so make sure to threated correctly.
+7.  If you need to mention someone or there is a character in the post always use the following name as main character or use all of them if needed, 
+they are brothers and sisters so make sure to threated correctly.
+    - Myesha (She/The Big sister)
+    - Devan (He)
+    - Jovian (He/ the youngest Brother)
 8.  each chapeter must be minimal has 2000 Words
 9.  The post must always include example code from real case or scenario
 10. It must be has minimum 5 Chapters
