@@ -16,7 +16,7 @@ layout: base
       </nav>
     </aside>
 
-    <div class="{% if page.full-width %} col {% else %} col-xl-9 col-lg-10 offset-lg-1 {% endif %}">
+    <div class="{% if page.full-width %} col {% else %} col-xl-9 col-lg-10 {% endif %}">
 
       {% if page.gh-repo %}
         {% assign gh_split =  page.gh-repo | split:'/'  %}
