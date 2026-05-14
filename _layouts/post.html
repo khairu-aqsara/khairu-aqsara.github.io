@@ -4,9 +4,19 @@ layout: base
 
 {% include header.html type="post" %}
 
+<div class="reading-progress" id="readingProgress"></div>
+
 <main class="{% if page.full-width %} container-fluid {% else %} container-md {% endif %}">
   <div class="row">
-    <div class="{% if page.full-width %} col {% else %} col-xl-8 offset-xl-2 col-lg-10 offset-lg-1 {% endif %}">
+
+    <!-- Desktop TOC sidebar -->
+    <aside class="d-none d-xl-block col-xl-2 post-toc-col">
+      <nav class="post-toc post-toc-desktop" id="postTocDesktop">
+        <div class="post-toc-label">Daftar Isi</div>
+      </nav>
+    </aside>
+
+    <div class="{% if page.full-width %} col {% else %} col-xl-9 col-lg-10 offset-lg-1 {% endif %}">
 
       {% if page.gh-repo %}
         {% assign gh_split =  page.gh-repo | split:'/'  %}
@@ -39,6 +49,15 @@ layout: base
         </div>
       {% endif %}
 
+      <!-- Mobile TOC toggle -->
+      <button class="toc-toggle" id="tocToggle" type="button">
+        Daftar Isi <span class="arrow">&#9660;</span>
+      </button>
+      <div class="toc-body-mobile" id="tocBodyMobile">
+        <nav class="post-toc" id="postTocMobile"></nav>
+      </div>
+
+      <!-- Post content -->
       <div class="blog-post">
         {{ content }}
       </div>
@@ -82,7 +101,95 @@ layout: base
         </li>
         {% endif %}
       </ul>
-      {% include comments.html %}
+
+      <div class="comments-area">
+        {% include comments.html %}
+      </div>
     </div>
   </div>
 </main>
+
+<script>
+(function() {
+  // Reading progress bar
+  var bar = document.getElementById('readingProgress');
+  function updateProgress() {
+    var scrollTop = window.scrollY;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    bar.style.width = progress + '%';
+  }
+  window.addEventListener('scroll', updateProgress);
+  updateProgress();
+
+  // Table of Contents
+  var headings = document.querySelectorAll('.blog-post h2, .blog-post h3');
+  if (headings.length > 0) {
+    var tocHtml = '<ul>';
+    headings.forEach(function(h) {
+      if (!h.id) {
+        h.id = h.textContent.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+      }
+      var cls = h.tagName === 'H3' ? 'toc-h3' : '';
+      tocHtml += '<li><a href="#' + h.id + '" class="' + cls + '">' + h.textContent + '</a></li>';
+    });
+    tocHtml += '</ul>';
+
+    // Populate both mobile and desktop TOC
+    var tocMobile = document.getElementById('postTocMobile');
+    if (tocMobile) {
+      tocMobile.innerHTML = '<div class="post-toc-label">Daftar Isi</div>' + tocHtml;
+    }
+    var tocDesktop = document.getElementById('postTocDesktop');
+    if (tocDesktop) {
+      tocDesktop.innerHTML = '<div class="post-toc-label">Daftar Isi</div>' + tocHtml;
+    }
+
+    // Active heading tracking via IntersectionObserver
+    var tocLinks = document.querySelectorAll('.post-toc a');
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(function(l) {
+            l.classList.remove('toc-active');
+            if (l.getAttribute('href') === '#' + entry.target.id) {
+              l.classList.add('toc-active');
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-80px 0px -80% 0px' });
+
+    headings.forEach(function(h) { observer.observe(h); });
+  }
+
+  // Mobile TOC toggle
+  var tocToggle = document.getElementById('tocToggle');
+  var tocBody = document.getElementById('tocBodyMobile');
+  if (tocToggle && tocBody) {
+    tocToggle.addEventListener('click', function() {
+      this.classList.toggle('open');
+      tocBody.classList.toggle('open');
+    });
+  }
+})();
+</script>
+
+<style>
+@media (min-width: 1200px) {
+  .intro-header .post-heading h1 {
+    font-size: 3rem;
+  }
+}
+@media (max-width: 575px) {
+  .intro-header .post-heading h1 {
+    font-size: 1.75rem;
+  }
+  .blog-post p {
+    font-size: 1rem;
+  }
+  .blog-post p:first-child::first-letter {
+    font-size: 2.5rem;
+  }
+}
+</style>
