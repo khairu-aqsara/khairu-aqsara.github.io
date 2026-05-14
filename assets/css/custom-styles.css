@@ -555,6 +555,11 @@ pre code {
 /* --- Table of Contents (Post Navigation) --- */
 .post-toc-col {
   position: relative;
+  padding-right: 0;
+}
+
+.post-toc-col + .col-xl-9 {
+  padding-left: 0;
 }
 
 .post-toc-desktop {
@@ -563,6 +568,7 @@ pre code {
   max-height: calc(100vh - 8rem);
   overflow-y: auto;
   padding-right: 0.5rem;
+  padding-left: 0.75rem;
 }
 
 .post-toc {
