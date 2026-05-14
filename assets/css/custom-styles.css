@@ -83,6 +83,17 @@ html {
   font-size: 100%;
 }
 
+/* Wider container override */
+.container-md {
+  max-width: 1320px;
+}
+
+@media (min-width: 768px) {
+  .container-md {
+    max-width: 1320px;
+  }
+}
+
 body {
   font-family: var(--body-font);
   font-size: 1.0625rem;
