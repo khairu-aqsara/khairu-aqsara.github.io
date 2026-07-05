@@ -7,7 +7,7 @@ categories: [Engineering, Story]
 tags: [Redis, Node.js, Race Condition, Backend, Microservices]
 ---
 
-# Bab 1: Hujan, Kopi, dan Bencana di Sleman
+## Bab 1: Hujan, Kopi, dan Bencana di Sleman
 
 Di luar jendela kamarku di Sleman, hujan turun deres banget. Bau tanah basah yang kena air hujan atau biasa disebut petrichor, nyampur sama wangi kopi robusta seduhanku yang udah mulai dingin. Jam di sudut layar MacBook-ku nunjukin pukul 23:55 WIB. Lima menit lagi, *flash sale* gede-gilaan dari klien *e-commerce* lokal yang lagi aku pegang backend-nya bakal dimulai. 
 
@@ -39,7 +39,7 @@ Di tengah kepanikan itu, notifikasi Discord bunyi. Ada panggilan masuk dari Jovi
 "Bang Dev! Abang liat log nggak?!" suara Jovian terdengar panik dari seberang sana. Malam jahanam di Sleman baru aja dimulai.
 
 
-# Bab 2: Jeritan Log dari Pante Raya dan Misteri Race Condition
+## Bab 2: Jeritan Log dari Pante Raya dan Misteri Race Condition
 
 "Aku liat, Jov! Ini aku lagi buka DB, kok bisa minus gini anjir?!" balasku setengah teriak. Tanganku sibuk ngetik sana-sini, nyari letak kesalahan.
 
@@ -92,7 +92,7 @@ Jovian menghela napas panjang. "Bang... itu klasik *Race Condition*. Pas 500 *re
 *Shit.* Bener juga. Aku ngerasa jadi *engineer* paling bodoh malam itu. Di lingkungan dengan konkurensi tinggi, *Read-Modify-Write* tanpa *locking* adalah resep bunuh diri. Dan aku baru aja neken tombol pemicu bomnya. 
 
 
-# Bab 3: Solusi Naif dan Keputusasaan yang Makin Dalam
+## Bab 3: Solusi Naif dan Keputusasaan yang Makin Dalam
 
 Mendengar penjelasan Jovian, aku ngerasa harus gerak cepat. "Oke, Jov. Abang bakal pasang Redis *Lock* sekarang. Mumpung *flash sale* sesi kedua mulai jam 01:00. Abang *hotfix* ke *production* sekarang."
 
@@ -147,7 +147,7 @@ Dalam keputusasaan yang absolut, layar Discord-ku kedip-kedip. Ada *incoming cal
 "Kenapa pada teriak-teriak malam-malam, Dek?" suara Kak Myesha terdengar tenang banget, sangat kontras sama kepanikan gue dan Jovian. Di *background* suaranya, sesekali kedengeran suara jangkrik malam dari pegunungan Gayo.
 
 
-# Bab 4: Kak Myesha dan Sihir Redlock yang Menyelamatkan
+## Bab 4: Kak Myesha dan Sihir Redlock yang Menyelamatkan
 
 Aku langsung nyeritain semuanya dengan nada putus asa. Dari masalah awal *overstock*, sampai solusi `SETNX`-ku yang malah bikin sistem *deadlock* dan tetep bocor.
 
@@ -250,7 +250,7 @@ async function processCheckoutRobust(userId, productId) {
 Aku ngangguk paham. Kode ini jauh lebih elegan dan matematis. Aku langsung *commit*, *push*, dan deploy *hotfix* v2 ke server.
 
 
-# Bab 5: Pagi yang Damai dan Pelajaran Seumur Hidup
+## Bab 5: Pagi yang Damai dan Pelajaran Seumur Hidup
 
 Jarum jam nunjukin pukul 03:30 WIB. Di layar Kibana milik Jovian di Pante Raya, garis grafik mulai stabil. Nggak ada lagi *error log* merah. Nggak ada lagi pesanan yang jebol batas stok. Ratusan *request* yang masuk barengan berhasil diantrekan dengan mulus oleh sistem Redlock. Kalaupun ada yang *timeout*, *user* dapet pesan yang jelas buat nyoba lagi, bukannya bikin database kacau.
 

@@ -7,7 +7,7 @@ categories: [Engineering, Security, Story]
 tags: [PHP, Polymorphic Code, Malware, Security, Legacy Code]
 ---
 
-# Bab 1: Alarm Merah dari Pesisir Krui
+## Bab 1: Alarm Merah dari Pesisir Krui
 
 Angin malam di Yogyakarta terasa lebih dingin dari biasanya. Di kamarku yang cuma diterangi lampu RGB dari balik monitor, aku (Devan) lagi sibuk ngerapihin *legacy code* PHP dari sebuah *client* agensi pemerintahan. Proyek ini baru aja di-handover ke aku sebulan yang lalu. Kode yang umurnya udah hampir satu dekade, minim dokumentasi, dan ditulis pakai gaya yang bikin *software engineer* zaman *now* pasti pengen nangis darah. 
 
@@ -40,7 +40,7 @@ Detik berikutnya, muncul *alert* baru. MD5 *hash*-nya berubah lagi. Lima detik k
 "Aku nggak tau, Bang. Abang kan yang pegang *backend*-nya! Buruan matiin *web server*-nya sebelum *database* di-dump sama *hacker*-nya!" teriak Jovian dari ujung telepon. Suara deburan ombak Krui di latar belakangnya malah bikin suasana makin horor. Malam itu, aku merasa kayak lagi ada di film *thriller cyber-security*.
 
 
-# Bab 2: Jejak Hantu Polymorphic di Dalam File PHP
+## Bab 2: Jejak Hantu Polymorphic di Dalam File PHP
 
 Aku nggak berani langsung matiin server karena ini web pelayanan publik yang lagi ada *campaign* pendaftaran *online*. Kalau aku *take down* sekarang tanpa bukti kuat, aku bisa kena denda penalti kontrak. Aku harus investigasi dulu.
 
@@ -128,7 +128,7 @@ Otakku berusaha memproses apa yang baru aja aku baca. File PHP ini membaca *sour
 Benar kata Adik. Teknik ini memang sering banget diasosiasikan dengan *malware*. Tapi pertanyaannya, kenapa *developer* sebelumnya naruh kode gila kayak gini di *framework* pelayanan publik?! Sebelum aku sempat mikir lebih jauh, tragedi yang sesungguhnya akhirnya terjadi.
 
 
-# Bab 3: Tragedi Fatal di Puncak Jam Sibuk
+## Bab 3: Tragedi Fatal di Puncak Jam Sibuk
 
 Tepat pukul 21:30 WIB, *campaign* pendaftaran publik dari pihak kementerian disebar lewat *broadcast* WhatsApp ke ribuan warga. Dalam hitungan detik, *traffic* yang tadinya tenang, mendadak meledak. Jumlah *request* per detik (RPS) naik dari 5 menjadi 500.
 
@@ -153,7 +153,7 @@ Aku harus ngebenerin ini secepatnya. Aku ambil file *backup* dari *repository* G
 Dalam kondisi mental yang udah setengah *burnout*, aku memutuskan untuk ngelakuin hal yang selalu aku lakuin kalau otak udah *stuck*: nelpon Kak Myesha.
 
 
-# Bab 4: Panggilan Darurat ke Berbah dan Penjelasan Sang Tech Lead
+## Bab 4: Panggilan Darurat ke Berbah dan Penjelasan Sang Tech Lead
 
 Aku mendial nomor Kak Myesha lewat Telegram. Kakak perempuanku yang satu ini adalah seorang *Tech Lead* *backend* di salah satu perusahaan *unicorn*. Kebetulan *weekend* ini dia lagi ambil cuti dan pulang kampung ke rumah nenek di daerah Berbah, Sleman, Yogyakarta—nggak terlalu jauh dari kosanku, tapi aku nggak mungkin nyetir ke sana dalam kondisi server lagi berdarah-darah.
 
@@ -182,7 +182,7 @@ Kak Myesha mulai ngejelasin pelan-pelan layaknya ngajar di kelas kampus. "Kalian
 Penjelasan Kak Myesha bikin pikiranku langsung jernih. Pantas saja semuanya jadi berantakan. Ini murni masalah salah kaprah *engineering*. "Terus solusinya gimana, Kak? Aku apus aja kan fungsi mutasinya?"
 
 
-# Bab 5: Eksorsisme Kode dan Pelajaran Pahit Sebagai Engineer
+## Bab 5: Eksorsisme Kode dan Pelajaran Pahit Sebagai Engineer
 
 "Iya, basmi habis fungsi `mutate_self()` itu," instruksi Kak Myesha tegas. "Kalau klien butuh proteksi IP atau *obfuscation*, pakai *tools obfuscator* PHP sungguhan di fase *build* sebelum di-*deploy*, bukan ngubah kode secara *runtime* pakai PHP *built-in function*. Dan satu lagi, Devan..."
 
