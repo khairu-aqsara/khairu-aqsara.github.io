@@ -46,13 +46,13 @@ Jovian yang sedang asyik mengunyah mengernyitkan dahi. "TUN? TAP? Kayak suara ai
 
 Myesha tertawa renyah. "Bisa dibilang begitu, Dik! TAP itu ibarat keran yang mengalirkan data mentah. Secara teknis, TAP beroperasi di Layer 2 (Data Link Layer), yang artinya data yang mengalir dari keran itu masih berupa *frame* Ethernet utuh lengkap dengan informasi alamat fisiknya (MAC Address). Kalau TUN, dia beroperasi di Layer 3 (Network Layer), jadi data yang keluar adalah paket IP. Karena kita mau membangun dari fondasi paling bawah, yaitu Ethernet, kita harus pakai TAP."
 
-Devan mengangguk paham. "Berarti, tugas pertama kita di Python adalah membuat atau membuka *device* TAP ini, kan? Kalau di C tutorial ini, dia pakai `open("/dev/net/tap", O_RDWR)` terus dilanjut pakai perintah `ioctl`. Di Python gimana caranya, Kak?"
+Devan mengangguk paham. "Berarti, tugas pertama kita di Python adalah membuat atau membuka *device* TAP ini, kan? Kalau di C tutorial ini, dia pakai `open("/dev/net/tun", O_RDWR)` terus dilanjut pakai perintah `ioctl`. Di Python gimana caranya, Kak?"
 
 "Tepat sekali, Bang!" seru Myesha bangga. "Di Python, kita bisa menggunakan modul `os` untuk membuka file *device* dan modul `fcntl` untuk melakukan perintah `ioctl`. *Ioctl* (Input/Output Control) itu ibarat panel kendali rahasia di mana kita bisa menyetel konfigurasi keran TAP kita tadi."
 
 Devan segera memosisikan jari-jarinya di atas keyboard dan mulai mengetik dengan panduan Myesha.
 
-```python path=null start=null
+```python
 import os
 import fcntl
 import struct
@@ -64,7 +64,7 @@ IFF_NO_PI = 0x1000
 
 def tun_alloc(dev_name='tap0'):
     # Membuka gerbang utama ke TUN/TAP device
-    fd = os.open('/dev/net/tap', os.O_RDWR)
+    fd = os.open('/dev/net/tun', os.O_RDWR)
     
     # Kita perlu membuat struktur data C (ifreq) menggunakan modul struct.
     # Struktur ini butuh nama device (16 bytes) dan flag (2 bytes).
@@ -123,7 +123,7 @@ Myesha mengangguk antusias. "Betul! Coba Abang tulis kodenya. Hati-hati dengan u
 
 Devan segera memodifikasi *script*-nya. Ia menambahkan fungsi untuk memecah data *header* Ethernet.
 
-```python path=null start=null
+```python
 def format_mac_address(mac_bytes):
     # Mengubah format byte menjadi string MAC Address yang mudah dibaca,
     # misalnya: aa:bb:cc:dd:ee:ff
@@ -172,7 +172,7 @@ Myesha mengambil cangkir tehnya, menyesapnya perlahan sebelum menjawab. "Sederha
 
 Devan segera mengetik blok kode utama. Ia menggunakan metode `os.read(fd, buffer_size)` untuk menarik data dari jaringan.
 
-```python path=null start=null
+```python
 # Melanjutkan dari script sebelumnya...
 
 def main():
@@ -209,7 +209,20 @@ Devan menjalankan `sudo python main.py`. Terminalnya seketika menampilkan teks b
 
 "Kok sepi, Kak?" tanya Devan heran.
 
-"Coba buka terminal satu lagi, Bang. Terus coba kasih perintah `ping` ke alamat IP sembarang, atau coba Abang ping interface `tap0` milik Abang sendiri. Saat sistem operasi mencoba mengirim sesuatu lewat antarmuka TAP, program Python kita pasti akan menangkapnya," jelas Myesha.
+Myesha tersenyum kecil, seolah sudah menduga pertanyaan itu akan muncul. "Wajar sepi, Bang. Coba ingat lagi analogi keran kita tadi. Keran TAP-nya memang sudah kita pasang di dinding, tapi kita belum memutar tuasnya biar airnya ngalir, dan kita juga belum ngasih dia alamat rumah. Di mata sistem operasi, si `tap0` ini masih 'tertidur' dan belum punya identitas apa-apa. Jadi wajar nggak ada satu pun paket yang mau lewat situ."
+
+"Oh, iya juga ya. Terus gimana cara 'mbangunin'-nya, Kak?" tanya Devan sambil menggeser kursinya mendekat.
+
+"Buka terminal satu lagi, Bang. Kita kasih dua mantra pendek. Yang pertama buat nyalain interface-nya, yang kedua buat ngasih dia alamat IP di jaringan lokal kita," jawab Myesha sambil menunjuk ke arah layar.
+
+Devan membuka terminal baru dan mengetikkan dua baris perintah dengan hati-hati.
+
+```bash
+sudo ip link set tap0 up
+sudo ip addr add 10.0.0.1/24 dev tap0
+```
+
+"Nah, sekarang `tap0` sudah punya dua hal penting, Bang," lanjut Myesha. "Statusnya sudah hidup (*up*), dan dia sudah punya alamat `10.0.0.1` di jaringan `10.0.0.0/24`. Ibaratnya, keran kita sudah menyala dan rumah kita sudah punya nomor. Sekarang, coba Abang ping tetangga yang masih satu jaringan, misalnya `10.0.0.2`. Karena alamat itu sekampung sama `tap0`, sistem operasi pasti bakal nyoba nyari tahu MAC-nya lewat interface itu — dan program Python kita yang bakal nangkap teriakannya," jelas Myesha.
 
 Di terminal baru, Devan mengetikkan `ping 10.0.0.2`. Seketika, di terminal Python-nya, teks berhamburan dengan cepat!
 
@@ -248,7 +261,7 @@ Devan merenung sejenak, mengingat dokumentasi yang tadi membuat kepalanya pusing
 
 Jari-jemari Devan kembali menari dengan kecepatan penuh. Kini ia tidak lagi kebingungan. Pikirannya sudah jernih. Logikanya mengalir selaras dengan struktur data jaringan.
 
-```python path=null start=null
+```python
 import socket
 
 # ... fungsi sebelumnya ...
