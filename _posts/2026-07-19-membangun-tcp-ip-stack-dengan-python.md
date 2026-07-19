@@ -7,7 +7,7 @@ categories: [Networking, Python]
 tags: [tcp-ip, ethernet, arp, python, tutorial, kehidupan]
 ---
 
-**Bab 1: Hujan Deras di Sleman dan Sebuah Tantangan**
+## Bab 1: Hujan Deras di Sleman dan Sebuah Tantangan
 
 Hujan menderas mengguyur kawasan Sleman malam ini. Rintiknya yang berjatuhan di atas atap genteng menciptakan simfoni alam yang ritmis, sebuah nyanyian pengantar tidur bagi sebagian orang, namun menjadi teman begadang bagi mereka yang sedang bergelut dengan baris-baris kode. Di sudut ruang tengah yang hangat oleh cahaya lampu kuning keemasan, Devan tampak duduk membungkuk di depan layar laptopnya. Wajahnya berkerut, matanya menatap tajam ke arah deretan teks di editor kode. Jari-jemarinya yang biasanya lincah menari di atas keyboard kini tampak kaku. Ia menghela napas panjang, sebuah helaan yang sarat akan rasa frustrasi dan kelelahan. Di layarnya terpampang sebuah artikel panjang berbahasa Inggris tentang cara membangun TCP/IP stack menggunakan bahasa C. Konsep tentang pointer, *memory allocation*, dan *struct* yang rumit seolah membuat kepalanya berputar.
 
@@ -36,7 +36,7 @@ Tiba-tiba, dari arah kamar tidur, muncul sesosok anak laki-laki dengan mata yang
 Hujan di luar sana seolah memberikan restunya. Suara rintiknya menjadi *backsound* yang sempurna. Di ruangan yang hangat itu, tiga bersaudara ini bersiap untuk memulai sebuah petualangan intelektual. Devan merasa energi baru mengalir di nadinya. Ia menghapus layar terminalnya, membuka file Python baru yang masih kosong. Malam ini, ia tidak lagi merasa berjuang sendirian. Ada Kak Myesha yang siap membimbingnya, dan ada Dik Jovian yang siap meramaikan suasana (dan menghabiskan pisang goreng). Mari kita mulai petualangan membangun fondasi komunikasi digital ini.
 
 
-**Bab 2: Membuka Gerbang dengan TUN/TAP Device**
+## Bab 2: Membuka Gerbang dengan TUN/TAP Device
 
 Langkah pertama dalam perjalanan panjang memahami *networking stack* adalah menemukan cara untuk mencegat atau menangkap lalu lintas jaringan secara langsung dari sistem operasi. Myesha mengambil secarik kertas dan pulpen, mulai menggambar sebuah diagram sederhana untuk Devan dan Jovian.
 
@@ -95,7 +95,7 @@ Jovian menunjuk ke arah baris `TUNSETIFF = 0x400454ca`. "Kak, angka `0x400454ca`
 Hati Devan yang sebelumnya diselimuti awan mendung kini mulai cerah. Pemahamannya mulai terbentuk. Ia menyadari bahwa di balik keajaiban koneksi internet yang ia gunakan setiap hari, terdapat komponen-komponen kecil yang saling bekerja sama, ibarat organ-organ di dalam tubuh manusia. Ia sudah berhasil membuat "keran" datanya. Langkah selanjutnya adalah melihat air apa yang mengalir dari keran tersebut.
 
 
-**Bab 3: Anatomi Sebuah Frame Ethernet**
+## Bab 3: Anatomi Sebuah Frame Ethernet
 
 Setelah *file descriptor* (`fd`) untuk perangkat TAP berhasil dibuat, Devan memiliki akses untuk membaca dan menulis data mentah ke jaringan. Namun, data yang mengalir dari TAP bukanlah teks biasa. Ia adalah sekumpulan bait (*bytes*) biner yang terlihat seperti karakter-karakter aneh jika dicetak langsung ke layar.
 
@@ -162,7 +162,7 @@ def parse_ethernet_frame(data):
 Devan tersenyum lega. Rasa stresnya berangsur-angsur menghilang berganti dengan rasa penasaran yang menggebu-gebu. Ia merasa seperti seorang detektif yang baru saja menemukan kunci sandi rahasia untuk membaca pesan-pesan tersembunyi yang bertebangan di udara.
 
 
-**Bab 4: Membongkar Paket (Ethernet Parsing) di Python**
+## Bab 4: Membongkar Paket (Ethernet Parsing) di Python
 
 Malam semakin larut. Rintik hujan di Sleman perlahan mulai mereda, menyisakan hawa dingin yang menusuk tulang. Namun, kehangatan di ruang tengah keluarga ini justru semakin menebal. Jovian yang tadinya semangat makan pisang goreng kini mulai merapat ke sofa, membungkus tubuhnya rapat-rapat dengan selimut sambil sesekali menguap, namun matanya tetap tertuju pada layar laptop sang kakak.
 
@@ -232,7 +232,7 @@ Jovian yang mengantuk pun ikut tersenyum melihat kehebohan abangnya. "Berarti ka
 "Persis banget, Dik!" tawa Myesha pecah. Analogi yang sangat membumi dari seorang anak kecil. Terkadang konsep teknologi tingkat tinggi sebenarnya meniru cara komunikasi manusia sehari-hari. Sangat manusiawi dan sederhana jika dipahami maknanya. Devan kini menyadari bahwa baris-baris kode biner yang menakutkan itu pada hakikatnya hanyalah bentuk terjemahan digital dari sifat dasar makhluk sosial yang saling mencari dan menyapa.
 
 
-**Bab 5: Address Resolution Protocol (ARP) - Si Pencari Alamat**
+## Bab 5: Address Resolution Protocol (ARP) - Si Pencari Alamat
 
 Kini mereka telah mencapai gerbang terakhir dari petualangan malam itu. Mereka berhasil menangkap paket, membedah bungkus luarnya (Ethernet), dan mengidentifikasi bahwa paket di dalamnya adalah paket pencari alamat alias ARP. Tugas terakhir adalah membongkar isi dari surat ARP tersebut agar mereka bisa membaca detail pertanyaannya.
 
