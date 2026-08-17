@@ -295,9 +295,9 @@ Ide ini **penting** dan perlu ditindaklanjuti.
 - [ ] Cek alur autosave
 - [x] Tulis keputusan editor
 
-```typescript
-const message = "catatan kecil";
-```
+    ```typescript
+    const message = "catatan kecil";
+    ```
 ```
 
 Ketika cursor berada di paragraf pertama, syntax bold terlihat. Ketika cursor pindah ke judul, paragraf kembali tampil seperti kalimat biasa. Ketika cursor masuk ke code block, tanda fence dan bahasa blok terlihat agar pengguna dapat mengeditnya tanpa menebak-nebak.
@@ -1051,6 +1051,8 @@ It is not a replacement for a knowledge base or a workspace.
 ```
 
 Ringkasan itu terasa tenang. Tidak ada klaim bahwa QuickNote akan mengubah cara semua orang bekerja. Tidak ada janji bahwa satu aplikasi dapat menyelesaikan seluruh masalah catatan. Hanya batas, tujuan, dan cara kerja.
+
+Repositori [github.com/khairu-aqsara/quicknote](https://github.com/khairu-aqsara/quicknote) menyimpan kode, README, dan pagar yang sama untuk setiap ide baru. Pembaca yang ingin ikut menjaga pagar itu boleh datang lewat issue atau pull request.
 
 Malam terakhir, mereka makan bersama. Percakapan bergeser dari kode ke hal-hal yang lebih biasa. Myesha bercerita tentang rumah keluarga di Krui. Jovian mengingat perjalanan ke Pante Raya. Devan menyebut bahwa beberapa ide terbaiknya muncul ketika ia sedang tidak duduk di depan meja kerja.
 
